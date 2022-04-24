@@ -37,6 +37,7 @@ const Main = ({
     }
   };
   return (
+    //add and export buttons with contact table
     <div className="border-2  h-auto border-b-0 p-6 my-16 m-auto">
       <div className="flex-end flex text-base left-0">
         <div className="bg-green-300 rounded-md flex items-center justify-center m-2 p-2 cursor-pointer">
@@ -55,6 +56,7 @@ const Main = ({
           <span className="mr-2">Export</span>
         </div>
       </div>
+      
       <div className="border-2 flex justify-center">
       {contacts.length==0 && (<p className="text-red-500">No Contacts Found</p>)}
         {contacts.length > 0 && (

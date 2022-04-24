@@ -1,3 +1,4 @@
+//initialstate in a reducer
 const initialContacts = {
   contacts: [
     {
@@ -22,6 +23,7 @@ const initialContacts = {
   contact: {},
 };
 
+//reducer for getcontact, addcontact, edit and delete contact
 export const contactreducer = (state = initialContacts, action) => {
   switch (action.type) {
     case "GET_ALL_CONTACTS":

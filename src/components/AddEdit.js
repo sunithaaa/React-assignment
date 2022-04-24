@@ -1,14 +1,10 @@
-import { list } from "postcss";
 import React, { useEffect, useRef, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 import { addContact, editContact } from "../redux/actions/contacts.action";
 
 const AddEdit = ({ addContact, editContactData, editContact }) => {
   console.log(editContact);
-  //   const contacts = useSelector((state) => state);
-  //   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
+  //initial state
   const [contact, setContact] = useState({
     name: "",
     phone: "",
@@ -29,11 +25,12 @@ const AddEdit = ({ addContact, editContactData, editContact }) => {
     // console.log(name, value);
   };
 
+  //onsubmit of form
   const handleSubmit = () => {
-    if (contact.id !== null && contact.id!==undefined) {
+    if (contact.id !== null && contact.id !== undefined) {
       editContact(contact, contact.id);
-      let oldContact={...contact}
-      oldContact.id=null;
+      let oldContact = { ...contact };
+      oldContact.id = null;
       setContact(oldContact);
     } else {
       addContact(contact);
@@ -44,6 +41,7 @@ const AddEdit = ({ addContact, editContactData, editContact }) => {
 
   const closeRef = useRef();
   return (
+    //Add and Edit form when clicked on add button and edit icon
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">
@@ -112,8 +110,6 @@ const AddEdit = ({ addContact, editContactData, editContact }) => {
               className="focus:outline-none w-[100%] border-b-2 mb-6 p-2 rounded-lg"
             />
           </div>
-
-          <div className="flex justify-around "></div>
         </form>
       </div>
       <div class="modal-footer">
@@ -143,10 +139,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getAllContacts:() => dispatch(getAllContacts())
     addContact: (contact) => dispatch(addContact(contact)),
-    editContact: (contact, id) => dispatch(editContact(contact,id)),
-  };    
+    editContact: (contact, id) => dispatch(editContact(contact, id)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddEdit);
